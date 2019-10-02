@@ -59,7 +59,7 @@ cd $OPENBLAS_DIR && rm -rf "$(find $OPENBLAS_DIR -maxdepth 1 -type d -name xiany
 
 # install ScaLAPACK
 cd $SCALAPACK_DIR/scalapack_installer
-./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=/usr/lib/x86_64-linux-gnu/openmpi/include < "b"
+./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=/usr/lib/x86_64-linux-gnu/openmpi/include
 
 # install Siesta dependencies
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs"
