@@ -74,3 +74,4 @@ fi
 
 # print validation success message
 box_out "Validation OK" "" "BASE_DIR = $BASE_DIR" "SIESTA_DIR = $SIESTA_DIR" "OPENBLAS_DIR = $OPENBLAS_DIR" "SCALAPACK_DIR = $SCALAPACK_DIR" "SIESTA_VERSION = $SIESTA_FULL_VERSION"
+read -p "Press Enter to continue..."
