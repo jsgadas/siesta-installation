@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 
 # generate sources
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj"
@@ -35,3 +36,4 @@ sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj_ts/transiesta" /usr/loca
 sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Util/TS/TBtrans/tbtrans" /usr/local/bin/tbtrans
 
 box_out "Installation Completed!"
+read -p "Press Enter to continue..."

@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash 
+set -e
 
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj"
 

@@ -1,4 +1,5 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 
 # print output in a neat box
 function box_out()
@@ -73,4 +74,3 @@ fi
 
 # print validation success message
 box_out "Validation OK" "" "BASE_DIR = $BASE_DIR" "SIESTA_DIR = $SIESTA_DIR" "OPENBLAS_DIR = $OPENBLAS_DIR" "SCALAPACK_DIR = $SCALAPACK_DIR" "SIESTA_VERSION = $SIESTA_FULL_VERSION"
-echo "Proceeding to installation..."
