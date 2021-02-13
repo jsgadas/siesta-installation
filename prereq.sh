@@ -56,8 +56,8 @@ box_out "Downloaded package files..."
 # install OpenBLAS
 cd $OPENBLAS_DIR
 cd "$(find . -type d -name xianyi-OpenBLAS*)"
-make DYNAMIC_ARCH=0 CC=gcc FC=gfortran HOSTCC=gcc BINARY=64 INTERFACE=64 NO_AFFINITY=1 NO_WARMUP=1 USE_OPENMP=0 USE_THREAD=0 LIBNAMESUFFIX=nonthreaded
-make PREFIX=$OPENBLAS_DIR LIBNAMESUFFIX=nonthreaded install
+make DYNAMIC_ARCH=0 CC=gcc FC=gfortran HOSTCC=gcc BINARY=64 INTERFACE=64 NO_AFFINITY=1 NO_WARMUP=1 USE_OPENMP=0 USE_THREAD=0 LIBNAMESUFFIX=nonthreaded > blas1.log 2>&1
+make PREFIX=$OPENBLAS_DIR LIBNAMESUFFIX=nonthreaded install > blas2.log 2>&1
 cd $OPENBLAS_DIR && rm -rf "$(find $OPENBLAS_DIR -maxdepth 1 -type d -name xianyi-OpenBLAS*)"
 
 box_out "Installed OpenBLAS..."
@@ -67,7 +67,7 @@ cd $SCALAPACK_DIR
 cp $CURRENT_DIR/scalapack_installer.zip ./
 unzip scalapack_installer.zip
 cd scalapack_installer
-./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=/usr/lib/mpich/include
+./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=/usr/lib/mpich/include > scalapack.log 2>&1
 
 box_out "Installed ScaLapack..."
 
