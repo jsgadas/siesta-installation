@@ -3,7 +3,7 @@ set -e
 
 # generate sources
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj"
-sh "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Src/obj_setup.sh"
+sh "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Src/obj_setup.sh" > siesta1.log 2>&1
 
 # create arch.make file
 . "$CURRENT_DIR/arch.sh"
@@ -14,19 +14,19 @@ cp -r Obj Obj_ts
 
 # make Siesta
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj"
-make OBJDIR=Obj
+make OBJDIR=Obj > siesta2.log 2>&1
 
 box_out "Siesta Installation OK"
 
 # make Transiesta
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj_ts"
-make transiesta OBJDIR=Obj_ts
+make transiesta OBJDIR=Obj_ts > siesta3.log 2>&1
 
 box_out "Transiesta Installation OK"
 
 # make TBtrans
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Util/TS/TBtrans"
-make OBJDIR=Obj_ts
+make OBJDIR=Obj_ts > siesta4.log 2>&1
 
 box_out "TBtrans Installation OK"
 
