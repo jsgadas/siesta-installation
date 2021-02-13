@@ -57,7 +57,7 @@ box_out "Downloaded package files..."
 cd $OPENBLAS_DIR
 cd "$(find . -type d -name xianyi-OpenBLAS*)"
 make DYNAMIC_ARCH=0 CC=gcc FC=gfortran HOSTCC=gcc BINARY=64 INTERFACE=64 NO_AFFINITY=1 NO_WARMUP=1 USE_OPENMP=0 USE_THREAD=0 LIBNAMESUFFIX=nonthreaded > blas1.log 2>&1
-make PREFIX=$OPENBLAS_DIR LIBNAMESUFFIX=nonthreaded install > blas2.log 2>&1
+make PREFIX=$OPENBLAS_DIR LIBNAMESUFFIX=nonthreaded install > ../blas2.log 2>&1
 cd $OPENBLAS_DIR && rm -rf "$(find $OPENBLAS_DIR -maxdepth 1 -type d -name xianyi-OpenBLAS*)"
 
 box_out "Installed OpenBLAS..."
