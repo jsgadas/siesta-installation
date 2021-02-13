@@ -73,8 +73,8 @@ box_out "Installed ScaLapack..."
 
 # install Siesta dependencies
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs"
-(./install_flook.bash 2>&1) | tee install_flook.log
-(./install_netcdf4.bash 2>&1) | tee install_netcdf4.log
+./install_flook.bash > install_flook.log 2>&1
+./install_netcdf4.bash > install_netcdf4.log 2>&1
 
 box_out "Prerequisite Installation OK" "" "Installed the following libraries:" "+OpenBLAS v0.3.3" "+ScaLAPACK v$SCALAPACK_VERSION" "+FLOOK v$FLOOK_VERSION" "+ZLIB v$ZLIB_VERSION" "+HDF5 v$HDF_FULL_VERSION" "+NETCDF_C v$NC_VERSION" "+NETCDF_FORTRAN v$NF_VERSION"
 read -p "Press Enter to continue..."
