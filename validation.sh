@@ -34,7 +34,7 @@ SIESTA_FULL_VERSION=$2
 SIESTA_PART_VERSION=$(echo $SIESTA_FULL_VERSION | cut -d'-' -f 1)
 
 # validate supported versions
-SUPPORTED_VERSIONS=('4.1-b3' '4.1-b4')
+SUPPORTED_VERSIONS=('4.1.5')
 
 function contains() {
   local array="$1[@]"

@@ -22,30 +22,35 @@ box_out "Created target directories..."
 # download and extract requried source files
 
 # download and extract OpenBLAS source files
+box_out "Download and extract OpenBLAS source files..."
+
 cd $OPENBLAS_DIR
 curl -kLo OpenBLAS.tar.gz --progress-bar https://ufpr.dl.sourceforge.net/project/openblas/v0.3.3/OpenBLAS%200.3.3%20version.tar.gz
 tar xzf OpenBLAS.tar.gz && rm OpenBLAS.tar.gz
 
 # download and extract Siesta source
+box_out "Download and extract Siesta source files..."
+
 cd $SIESTA_DIR
-curl -kLo "siesta-$SIESTA_FULL_VERSION.tar.gz" --progress-bar "https://launchpad.net/siesta/$SIESTA_PART_VERSION/$SIESTA_FULL_VERSION/+download/siesta-$SIESTA_FULL_VERSION.tar.gz"
+curl -kLo "siesta-$SIESTA_FULL_VERSION.tar.gz" --progress-bar "https://gitlab.com/siesta-project/siesta/-/releases/v$SIESTA_PART_VERSION/downloads/siesta-$SIESTA_FULL_VERSION.tar.gz"
 tar xzf "siesta-$SIESTA_FULL_VERSION.tar.gz" && rm "siesta-$SIESTA_FULL_VERSION.tar.gz"
 
 box_out "Downloaded dependent packages..."
 
 # read versions of flook, zlib, hdf5, netcdf-c and netcdf-fortran
-FLOOK_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_flook.bash" | grep f_v= | cut -d'=' -f 2)
-ZLIB_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_netcdf4.bash" | grep z_v= | cut -d'=' -f 2)
-HDF_FULL_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_netcdf4.bash" | grep h_v= | cut -d'=' -f 2)
+FLOOK_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_flook.bash" | grep -m1 f_v= | cut -d'=' -f 2)
+ZLIB_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_netcdf4.bash" | grep -m1 z_v= | cut -d'=' -f 2)
+HDF_FULL_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_netcdf4.bash" | grep -m1 h_v= | cut -d'=' -f 2)
 HDF_PART_VERSION=$(echo $HDF_FULL_VERSION | sed -E 's/([0-9]+\.[0-9]+)\.[0-9]+/\1/')
-NC_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_netcdf4.bash" | grep nc_v= | cut -d'=' -f 2)
-NF_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_netcdf4.bash" | grep nf_v= | cut -d'=' -f 2)
+NC_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_netcdf4.bash" | grep -m1 nc_v= | cut -d'=' -f 2)
+NF_VERSION=$(cat "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs/install_netcdf4.bash" | grep -m1 nf_v= | cut -d'=' -f 2)
 
 box_out "Going to install the following libraries:" "+FLOOK v$FLOOK_VERSION" "+ZLIB v$ZLIB_VERSION" "+HDF5 v$HDF_FULL_VERSION" "+NETCDF_C v$NC_VERSION" "+NETCDF_FORTRAN v$NF_VERSION"
 
 # download Siesta dependencies
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs"
-curl -kLo "flook-$FLOOK_VERSION.tar.gz" --progress-bar "https://github.com/ElectronicStructureLibrary/flook/releases/download/v$FLOOK_VERSION/flook-$FLOOK_VERSION.tar.gz"
+ 
+curl -kLo "flook-$FLOOK_VERSION.tar.gz" --progress-bar "https://github.com/ElectronicStructureLibrary/flook/archive/v$FLOOK_VERSION/flook-$FLOOK_VERSION.tar.gz"
 curl -kLo "zlib-$ZLIB_VERSION.tar.gz" --progress-bar "https://zlib.net/zlib-$ZLIB_VERSION.tar.gz"
 curl -kLo "hdf5-$HDF_FULL_VERSION.tar.bz2" --progress-bar "https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-$HDF_PART_VERSION/hdf5-$HDF_FULL_VERSION/src/hdf5-$HDF_FULL_VERSION.tar.bz2"
 curl -kLo "netcdf-c-$NC_VERSION.tar.gz" --progress-bar "https://github.com/Unidata/netcdf-c/archive/v$NC_VERSION.tar.gz"
@@ -75,7 +80,7 @@ box_out "Installed ScaLapack..."
 
 # install Siesta dependencies
 box_out "Installing Siesta dependencies..."
-cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs"
+cd $SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs
 ./install_flook.bash > install_flook.log 2>&1
 ./install_netcdf4.bash > install_netcdf4.log 2>&1
 
