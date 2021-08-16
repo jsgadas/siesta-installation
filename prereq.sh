@@ -67,7 +67,7 @@ cd $SCALAPACK_DIR
 cp $CURRENT_DIR/scalapack_installer.zip ./
 unzip scalapack_installer.zip
 cd scalapack_installer
-./setup.py --prefix $SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=/usr/lib/mpich/include > scalapack.log 2>&1
+./setup.py --prefix=$SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=/usr/lib/mpich/include > scalapack.log 2>&1
 
 box_out "Installed ScaLapack..."
 
