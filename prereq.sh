@@ -54,6 +54,7 @@ curl -kLo "netcdf-fortran-$NF_VERSION.tar.gz" --progress-bar "https://github.com
 box_out "Downloaded package files..."
 
 # install OpenBLAS
+box_out "Installing OpenBLAS..."
 cd $OPENBLAS_DIR
 cd "$(find . -type d -name xianyi-OpenBLAS*)"
 make DYNAMIC_ARCH=0 CC=gcc FC=gfortran HOSTCC=gcc BINARY=64 INTERFACE=64 NO_AFFINITY=1 NO_WARMUP=1 USE_OPENMP=0 USE_THREAD=0 LIBNAMESUFFIX=nonthreaded > blas1.log 2>&1
@@ -63,6 +64,7 @@ cd $OPENBLAS_DIR && rm -rf "$(find $OPENBLAS_DIR -maxdepth 1 -type d -name xiany
 box_out "Installed OpenBLAS..."
 
 # install ScaLAPACK
+box_out "Installing ScaLAPACK..."
 cd $SCALAPACK_DIR
 cp $CURRENT_DIR/scalapack_installer.zip ./
 unzip scalapack_installer.zip
@@ -72,6 +74,7 @@ cd scalapack_installer
 box_out "Installed ScaLapack..."
 
 # install Siesta dependencies
+box_out "Installing Siesta dependencies..."
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Docs"
 ./install_flook.bash > install_flook.log 2>&1
 ./install_netcdf4.bash > install_netcdf4.log 2>&1
