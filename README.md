@@ -5,8 +5,7 @@ This repository contains the scripts to install the Siesta suite - consisting of
 Siesta, Transiesta and TBtrans. The installation will use OpenMPI for parallel
 execution. Currently supported Siesta versions are:
 
-- 4.1-b3
-- 4.1-b4
+- 4.1.5
 
 ### Usage
 1. Clone this repository on the target system [`git clone https://github.com/lalluanthoor/siesta-installation.git`]
