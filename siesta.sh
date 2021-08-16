@@ -13,18 +13,21 @@ cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION"
 cp -r Obj Obj_ts
 
 # make Siesta
+box_out "Installing Siesta..."
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj"
 make OBJDIR=Obj > siesta2.log 2>&1
 
 box_out "Siesta Installation OK"
 
 # make Transiesta
+box_out "Installing Transiesta..."
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj_ts"
 make transiesta OBJDIR=Obj_ts > siesta3.log 2>&1
 
 box_out "Transiesta Installation OK"
 
 # make TBtrans
+box_out "Installing TBtrans..."
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Util/TS/TBtrans"
 make OBJDIR=Obj_ts > siesta4.log 2>&1
 
@@ -36,4 +39,7 @@ sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj_ts/transiesta" /usr/loca
 sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Util/TS/TBtrans/tbtrans" /usr/local/bin/tbtrans
 
 box_out "Installation Completed!"
-read -p "Press Enter to continue..."
+
+exit
+
+
