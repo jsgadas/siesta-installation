@@ -19,13 +19,6 @@ make OBJDIR=Obj > siesta2.log 2>&1
 
 box_out "Siesta Installation OK"
 
-# make Transiesta
-box_out "Installing Transiesta..."
-cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj_ts"
-make transiesta OBJDIR=Obj_ts > siesta3.log 2>&1
-
-box_out "Transiesta Installation OK"
-
 # make TBtrans
 box_out "Installing TBtrans..."
 cd "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Util/TS/TBtrans"
