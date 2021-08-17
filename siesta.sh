@@ -34,9 +34,9 @@ make OBJDIR=Obj_ts > siesta4.log 2>&1
 box_out "TBtrans Installation OK"
 
 # create symlinks
-sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj/siesta" /usr/local/bin/siesta
-sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj_ts/transiesta" /usr/local/bin/transiesta
-sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Util/TS/TBtrans/tbtrans" /usr/local/bin/tbtrans
+#sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj/siesta" /usr/local/bin/siesta
+#sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Obj_ts/transiesta" /usr/local/bin/transiesta
+#sudo ln -s "$SIESTA_DIR/siesta-$SIESTA_FULL_VERSION/Util/TS/TBtrans/tbtrans" /usr/local/bin/tbtrans
 
 box_out "Installation Completed!"
 

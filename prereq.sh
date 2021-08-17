@@ -2,20 +2,20 @@
 set -e
 
 # install required ubuntu packages using apt
-sudo apt update
-sudo apt install -y python curl unzip
-sudo apt install -y hwloc sysstat
-sudo apt install -y build-essential g++ gfortran libreadline-dev m4 xsltproc
-sudo apt install -y mpich libmpich-dev
+#sudo apt update
+#sudo apt install -y python curl unzip
+#sudo apt install -y hwloc sysstat
+#sudo apt install -y build-essential g++ gfortran libreadline-dev m4 xsltproc
+#sudo apt install -y mpich libmpich-dev
 
 box_out "Ubuntu package installation OK"
 
 # create installation directories
 if [[ ! -d $BASE_DIR ]]; then
-  sudo mkdir -p $BASE_DIR
+  mkdir -p $BASE_DIR
 fi
-sudo mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
-sudo chmod -R 777 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+mkdir $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
+chmod -R 777 $SIESTA_DIR $OPENBLAS_DIR $SCALAPACK_DIR
 
 box_out "Created target directories..."
 
@@ -25,7 +25,7 @@ box_out "Created target directories..."
 box_out "Download and extract OpenBLAS source files..."
 
 cd $OPENBLAS_DIR
-curl -kLo OpenBLAS.tar.gz --progress-bar https://ufpr.dl.sourceforge.net/project/openblas/v0.3.3/OpenBLAS%200.3.3%20version.tar.gz
+curl -kLo OpenBLAS.tar.gz --progress-bar https://sourceforge.net/projects/openblas/files/v0.3.17/OpenBLAS%200.3.17%20version.tar.gz
 tar xzf OpenBLAS.tar.gz && rm OpenBLAS.tar.gz
 
 # download and extract Siesta source
@@ -68,15 +68,24 @@ cd $OPENBLAS_DIR && rm -rf "$(find $OPENBLAS_DIR -maxdepth 1 -type d -name xiany
 
 box_out "Installed OpenBLAS..."
 
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/gadas/Codes/Packages/SIESTA/build/$SIESTA_VERS/openblas/lib"
+
 # install ScaLAPACK
 box_out "Installing ScaLAPACK..."
 cd $SCALAPACK_DIR
-cp $CURRENT_DIR/scalapack_installer.zip ./
-unzip scalapack_installer.zip
+wget http://www.netlib.org/scalapack/scalapack_installer.tgz -O ./scalapack_installer.tgz
+tar xf ./scalapack_installer.tgz
+mkdir -p $SCALAPACK_DIR/scalapack_installer/build/download/
+wget https://github.com/Reference-ScaLAPACK/scalapack/archive/v2.1.0.tar.gz -O $SCALAPACK_DIR/scalapack_installer/build/download/scalapack.tgz
 cd scalapack_installer
-./setup.py --prefix=$SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=/usr/lib/mpich/include > scalapack.log 2>&1
+mpiincdir="/usr/include/mpich"
+if [ ! -d "$mpiincdir" ]; then mpiincdir="/usr/lib/x86_64-linux-gnu/openmpi/include" ; fi
+./setup.py --prefix=$SCALAPACK_DIR --blaslib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --lapacklib=$OPENBLAS_DIR/lib/libopenblas_nonthreaded.a --mpibindir=/usr/bin --mpiincdir=$mpiincdir > scalapack.log 2>&1
 
 box_out "Installed ScaLapack..."
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/gadas/Codes/Packages/SIESTA/build/$SIESTA_VERS/scalapack/lib"
+
 
 # install Siesta dependencies
 box_out "Installing Siesta dependencies..."
